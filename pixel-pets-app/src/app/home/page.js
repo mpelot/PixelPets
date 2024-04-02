@@ -1,9 +1,9 @@
-import Image from "next/image";
+import styles from "./home.css";
 
 export default function Home() {
   return (
     <div>
-      <h1>main app</h1>
+      <h1>Home</h1>
     </div>
   );
 }
