@@ -3,20 +3,20 @@ import styles from "./login.css";
 export default function Home() {
   return (
     <div>
-      <div class="login-container">
+      <div className="login-container">
         <h2>Login</h2>
-        <form action="#" method="post">
-            <div class="form-group">
-                <label for="username">Username</label>
+        <form action="home" method="post">
+            <div className="form-group">
+                <label htmlFor="username">Username</label>
                 <input type="text" id="username" name="username" required/>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password" name="password" required/>
             </div>
             <button type="submit">Login</button>
         </form>
-    </div>
+      </div>
     </div>
   );
 }
