@@ -3,6 +3,10 @@ import styles from "./login.css";
 export default function Home() {
   return (
     <div>
+      <div className="title">
+        <img src="logo.png"/>
+        <h1>PixelPets</h1>
+      </div>
       <div className="login-container">
         <h2>Login</h2>
         <form action="home" method="post">

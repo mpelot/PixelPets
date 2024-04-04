@@ -1,21 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
+
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
+.title {
+    display: flex;
+    align-items: center;
+    margin: 90px 0 40px 0;
+}
+
+.title img {
+    
+}
+
+.title h1 {
+    display: inline-block;
+    margin: 0;
+    font-family: "Jura", sans-serif;
+    font-size: 90px;
+    margin-left: 20px;
+}
+
 .login-container {
-  
     width: 300px;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    font-family: "Bai Jamjuree", sans-serif;
 }
 
 .login-container h2 {
