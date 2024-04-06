@@ -7,6 +7,7 @@ export default function PetCard(props) {
     const [mouseX, setMouseX] = useState();
     const [mouseY, setMouseY] = useState();
     const [scale, setScale] = useState(1);
+    const boundsRef = useRef(null);
     const cardRef = useRef(null);
 
     useEffect(() => {
@@ -25,25 +26,25 @@ export default function PetCard(props) {
         if (window !== null) {
             window.addEventListener('mousemove', handleMouseMove);
         }
-        if (cardRef.current != null) {
-            cardRef.current.addEventListener('mouseenter', handleMouseEnter);
-            cardRef.current.addEventListener('mouseleave', handleMouseLeave);
+        if (boundsRef.current != null) {
+            boundsRef.current.addEventListener('mouseenter', handleMouseEnter);
+            boundsRef.current.addEventListener('mouseleave', handleMouseLeave);
         }
     
         return () => {
             if (window !== null) {
                 window.removeEventListener('mousemove', handleMouseMove);
             }
-            if (cardRef.current != null) {
-                cardRef.current.removeEventListener('mouseenter', handleMouseEnter);
-                cardRef.current.removeEventListener('mouseleave', handleMouseLeave);
+            if (boundsRef.current != null) {
+                boundsRef.current.removeEventListener('mouseenter', handleMouseEnter);
+                boundsRef.current.removeEventListener('mouseleave', handleMouseLeave);
             }
         };
     }, []);
     
     const calculateRotate = (axis, size) => {
-        if (!cardRef.current) return 0;
-        const rect = cardRef.current.getBoundingClientRect();
+        if (!boundsRef.current) return 0;
+        const rect = boundsRef.current.getBoundingClientRect();
 
         if (mouseX < rect.left ||  mouseX > rect.right || mouseY > rect.bottom || mouseY < rect.top) return 0;
         return ((axis === 'X' ? mouseY : mouseX) - (axis === 'X' ? rect.top : rect.left) - (size === 'height' ? rect.height / 2 : rect.width / 2)) / 8;
@@ -53,12 +54,15 @@ export default function PetCard(props) {
     const rotateY = calculateRotate('Y', 'width');  
 
     return (    
-        <div className='container'>
-            <div className='rotationWrapper' style={{ transform: `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(${scale})` }}>
-                <div className='cardWrapper' ref={cardRef}>
+        <div className='container' ref={boundsRef}>
+            <div className='rotationWrapper' style={{ transform: `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)` }}>
+                <div className='cardWrapper' ref={cardRef} style={{ transform: `scale(${scale})` }}>
                     <div className="cardContainer">
-                        <div className="imageContainer"></div>
-                        <h2>Content</h2>
+                        <div className="imageContainer">
+                            <img src={props.img} alt={props.name}/>
+                        </div>
+                        <h2>{props.name}</h2>
+                        <p>{props.desc}</p>
                     </div>
                 </div>
             </div>
