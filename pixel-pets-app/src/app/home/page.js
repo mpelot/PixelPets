@@ -1,9 +1,12 @@
 import styles from "./home.css";
+import PetCard from "../petCard/petCard";
 
 export default function Home() {
   return (
     <div>
-      <h1>Home</h1>
+      <PetCard></PetCard>
+      <PetCard></PetCard>
+      <PetCard></PetCard>
     </div>
   );
 }

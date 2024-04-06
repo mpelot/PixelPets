@@ -1,9 +1,9 @@
-'use client'
+    'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
 import './petCard.css'; // assuming petCard.css contains necessary styles
 
-export default function PetCard() {
+export default function PetCard(props) {
     const [mouseX, setMouseX] = useState();
     const [mouseY, setMouseY] = useState();
     const [scale, setScale] = useState(1);
@@ -15,7 +15,7 @@ export default function PetCard() {
             setMouseY(e.clientY);
         };
         const handleMouseEnter = async (e) => {
-            setScale(1.2);
+            setScale(1.1);
         };
         const handleMouseLeave = async (e) => {
             setScale(1)
@@ -29,7 +29,7 @@ export default function PetCard() {
             cardRef.current.addEventListener('mouseenter', handleMouseEnter);
             cardRef.current.addEventListener('mouseleave', handleMouseLeave);
         }
-
+    
         return () => {
             if (window !== null) {
                 window.removeEventListener('mousemove', handleMouseMove);
@@ -46,18 +46,19 @@ export default function PetCard() {
         const rect = cardRef.current.getBoundingClientRect();
 
         if (mouseX < rect.left ||  mouseX > rect.right || mouseY > rect.bottom || mouseY < rect.top) return 0;
-        return ((axis === 'X' ? mouseY : mouseX) - (axis === 'X' ? rect.top : rect.left) - (size === 'height' ? rect.height / 2 : rect.width / 2)) / 20;
+        return ((axis === 'X' ? mouseY : mouseX) - (axis === 'X' ? rect.top : rect.left) - (size === 'height' ? rect.height / 2 : rect.width / 2)) / 8;
     };
 
     const rotateX = calculateRotate('X', 'height');
     const rotateY = calculateRotate('Y', 'width');  
 
-    return (
+    return (    
         <div className='container'>
             <div className='rotationWrapper' style={{ transform: `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(${scale})` }}>
                 <div className='cardWrapper' ref={cardRef}>
                     <div className="cardContainer">
-                        <h1>Content</h1>
+                        <div className="imageContainer"></div>
+                        <h2>Content</h2>
                     </div>
                 </div>
             </div>
