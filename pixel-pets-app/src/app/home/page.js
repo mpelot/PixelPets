@@ -9,7 +9,7 @@ export default function Home() {
   const [pet, setPet] = useState(
     {
       name: 'Turtle',
-      img: "https://png.pngtree.com/png-vector/20190710/ourlarge/pngtree-business-user-profile-vector-png-image_1541960.jpg",
+      img: "Turtle.png",
       desc: "This is a turtle rahhhhhhh"
     }
   );
