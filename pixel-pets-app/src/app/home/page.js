@@ -19,6 +19,7 @@ export default function Home() {
       <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
       <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
       <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
+      <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
     </div>
   );
 }

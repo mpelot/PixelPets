@@ -1,14 +1,12 @@
-    'use client'
+'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
-import './petCard.css'; // assuming petCard.css contains necessary styles
+import './petCard.css';
 
 export default function PetCard(props) {
     const [mouseX, setMouseX] = useState();
     const [mouseY, setMouseY] = useState();
-    const [scale, setScale] = useState(1);
-    const [shadow, setShadow] = useState(0);
-    const boundsRef = useRef(null);
+    const [isOn, setIsOn] = useState(false);
     const cardRef = useRef(null);
 
     useEffect(() => {
@@ -17,39 +15,30 @@ export default function PetCard(props) {
             setMouseY(e.clientY);
         };
         const handleMouseEnter = async (e) => {
-            setScale(1.1);
-            setShadow(1);
+            setIsOn(true);
         };
         const handleMouseLeave = async (e) => {
-            setScale(1)
-            setShadow(0);
-            setMouseX(e.clientX);
-            setMouseY(e.clientY);
+            setIsOn(false);
         };
-        if (window !== null) {
-            window.addEventListener('mousemove', handleMouseMove);
+        if (cardRef.current != null) {
+            cardRef.current.addEventListener('mousemove', handleMouseMove);
+            cardRef.current.addEventListener('mouseenter', handleMouseEnter);
+            cardRef.current.addEventListener('mouseleave', handleMouseLeave);
         }
-        if (boundsRef.current != null) {
-            boundsRef.current.addEventListener('mouseenter', handleMouseEnter);
-            boundsRef.current.addEventListener('mouseleave', handleMouseLeave);
-        }
-    
         return () => {
-            if (window !== null) {
-                window.removeEventListener('mousemove', handleMouseMove);
-            }
-            if (boundsRef.current != null) {
-                boundsRef.current.removeEventListener('mouseenter', handleMouseEnter);
-                boundsRef.current.removeEventListener('mouseleave', handleMouseLeave);
+            if (cardRef.current != null) {
+                cardRef.current.removeEventListener('mousemove', handleMouseMove);
+                cardRef.current.removeEventListener('mouseenter', handleMouseEnter);
+                cardRef.current.removeEventListener('mouseleave', handleMouseLeave);
             }
         };
     }, []);
     
     const calculateRotate = (axis, size) => {
-        if (!boundsRef.current) return 0;
-        const rect = boundsRef.current.getBoundingClientRect();
+        if (!cardRef.current) return 0;
+        const rect = cardRef.current.getBoundingClientRect();
 
-        if (mouseX < rect.left ||  mouseX > rect.right || mouseY > rect.bottom || mouseY < rect.top) return 0;
+        if (!isOn) return 0;
         return ((axis === 'X' ? mouseY : mouseX) - (axis === 'X' ? rect.top : rect.left) - (size === 'height' ? rect.height / 2 : rect.width / 2)) / 8;
     };
 
@@ -58,9 +47,7 @@ export default function PetCard(props) {
     }
 
     const calculateSheenOpacity = () => {
-        if (!boundsRef.current) return 0;
-        const rect = boundsRef.current.getBoundingClientRect();
-        if (mouseX < rect.left ||  mouseX > rect.right || mouseY > rect.bottom || mouseY < rect.top) return 0;
+        if (!isOn) return 0;
         return (-(Math.abs(rotateX) + Math.abs(rotateY)) + 13) / 50;
     }
 
@@ -70,9 +57,10 @@ export default function PetCard(props) {
     const sheenOpacity = calculateSheenOpacity();
 
     return (    
-        <div className='container' ref={boundsRef}>
-            <div className='rotationWrapper' style={{ transform: `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`, boxShadow: `${rotateY}px ${rotateX}px 80px 0px rgba(100, 100, 100, ${shadow})`}}>
-                <div className='cardWrapper' ref={cardRef} style={{ transform: `scale(${scale})`}}>
+        <div className='container'>
+            <div className='bounds' ref={cardRef}></div>
+            <div className='rotationWrapper' style={{ transform: `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`, boxShadow: `${rotateY}px ${rotateX}px 80px 0px rgba(100, 100, 100, ${isOn ? 1 : 0})`}}>
+                <div className='cardWrapper' style={{ transform: `scale(${isOn ? 1.1 : 1.0})`}}>
                     <div className='sheen' style={{ backgroundImage:`linear-gradient(55deg, transparent, rgba(255 255 255 / ${sheenOpacity}) ${sheenPosition}%, transparent)`}}></div>
                     <div className="cardContainer" >
                         <div className="imageContainer">

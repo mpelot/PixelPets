@@ -12,7 +12,7 @@ export default function Home() {
           </div>
           <div className="login-container">
             <h2>Login</h2>
-            <form action="petCard" method="post">
+            <form action="home" method="post">
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" name="username" required/>
