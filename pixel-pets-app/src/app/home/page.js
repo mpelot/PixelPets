@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import styles from "./home.css";
 import PetCard from "../petCard/petCard";
+import Navbar from "../navbar/navbar";
+
 
 export default function Home() {
 
@@ -29,6 +31,7 @@ export default function Home() {
 
   return (
     <div className="petContainer">
+      <Navbar />
       <div className="titleContainer">
         <div className="pixelPets">
           <img src="logo.png" />

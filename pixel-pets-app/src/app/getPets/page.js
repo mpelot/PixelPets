@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import styles from "./getPets.css";
+import Navbar from "../navbar/navbar";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ export default function Home() {
       {/* <header>
         <h1>Pixel Pets</h1>
       </header> */}
+      <Navbar />
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <div className="upload">
