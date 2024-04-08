@@ -1,73 +1,73 @@
-'use client'
-import React, { useState } from 'react';
-import './form.css';
+body, form {
+    background-color: #9bb1e9;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
 
-export default function Home() {
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    rarity: '1',
-    personalityTrait: ''
-  });
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 100%;
+}
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+form > div {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 225px;
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    setFormData({
-      name: '',
-      description: '',
-      rarity: '1',
-      personalityTrait: ''
-    });
-  };
+form h3 {
+    margin-left: 40px;
+}
 
-  return (
-    <div>
-      <header>
-        <h1>Pixel Pets</h1>
-      </header>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div className="upload">
-            <h3>Create New Pet</h3>
-            <img src="https://static.thenounproject.com/png/187803-200.png" alt="Logo" />
-            <input type="file" />
-          </div>
-          <div>
-            <label>Name:</label>
-            <input type="text" name="name" value={formData.name} onChange={handleInputChange}/>
-          </div>
-          <div>
-            <label>Description:</label>
-            <textarea name="description" value={formData.description} onChange={handleInputChange}/>
-          </div>
-          <div>
-            <label>Rarity:</label>
-            <select name="rarity" value={formData.rarity} onChange={handleInputChange}>
-              <option value="1">â˜…â˜†â˜†â˜†â˜†</option>
-              <option value="2">â˜…â˜…â˜†â˜†â˜†</option>
-              <option value="3">â˜…â˜…â˜…â˜†â˜†</option>
-              <option value="4">â˜…â˜…â˜…â˜…â˜†</option>
-              <option value="5">â˜…â˜…â˜…â˜…â˜…</option>
-            </select>
-          </div>
-          <div>
-            <label>Personality Trait:</label>
-            <select name="personalityTrait" value={formData.personalityTrait} onChange={handleInputChange}>
-              <option value="">Select One</option>
-              <option value="friendly">Friendly</option>
-              <option value="outgoing">Outgoing</option>
-              <option value="introverted">Introverted</option>
-            </select>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-  );
-}                                                                                       
+form img {
+    width: 60%;
+    margin-left: 40px;
+}
+
+form input[type="file"]
+{
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+    width: 100%;
+}
+
+label {
+    font-weight: normal;
+    font-style: oblique;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+select, 
+input[type="text"], 
+textarea {
+    width: 100%; /* Set width of select, input[type="text"], and textarea to 100% */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+}
+
+button[type="submit"] {
+    width: 15%;
+    padding: 12px;
+    background-color: #B8336A;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:smaller
+}
