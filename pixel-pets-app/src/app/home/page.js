@@ -6,13 +6,26 @@ import PetCard from "../petCard/petCard";
 
 export default function Home() {
 
-  const [pet, setPet] = useState(
+  const [pets, setPets] = useState([
     {
+      id: "0",
+      name: 'Turtle',
+      img: "Turtle.png",
+      desc: "This is a turtle rahhhhhhh"
+    },
+    {
+      id: "1",
+      name: 'Turtle',
+      img: "Turtle.png",
+      desc: "This is a turtle rahhhhhhh"
+    },
+    {
+      id: "2",
       name: 'Turtle',
       img: "Turtle.png",
       desc: "This is a turtle rahhhhhhh"
     }
-  );
+  ]);
 
   return (
     <div className="petContainer">
@@ -30,10 +43,8 @@ export default function Home() {
         </div>
 
         <div className="myCards">
-          <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
-          <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
-          <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
-          <PetCard name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
+          {pets.map(pet => <PetCard key={pet.id} name={pet.name} img={pet.img} desc={pet.desc}></PetCard>
+        )}
         </div>
       </div>
     </div>
