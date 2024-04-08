@@ -27,11 +27,11 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <header>
+    <div className='getPetsContainer'>
+      {/* <header>
         <h1>Pixel Pets</h1>
-      </header>
-      <div>
+      </header> */}
+      <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <div className="upload">
             <h3>Create New Pet</h3>
