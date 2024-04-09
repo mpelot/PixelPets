@@ -36,7 +36,7 @@ export default function Home() {
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <div className="upload">
-            <h3>Create New Pet</h3>
+            <h3 className="newPetTitle">Create New Pet</h3>
             <img src="https://static.thenounproject.com/png/187803-200.png" alt="Logo" />
             <input type="file" />
           </div>
