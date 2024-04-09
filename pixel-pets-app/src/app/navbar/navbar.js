@@ -9,9 +9,17 @@ import LoggedOutNavbar from './loggedOutNavbar';
 function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false);
 
-  const handleToggle = () => {
-    setShowNavLinks(!showNavLinks);
-  };
+  useEffect(() => {
+    const loggedIn =
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("loggedIn")
+        : null;
+    setIsLoggedIn(loggedIn === "true");
+  }, []);
+  
+  // const handleToggle = () => {
+  //   setShowNavLinks(!showNavLinks);
+  // };
 
   const links = [
     { href: "/home", text: "Home" },
@@ -27,15 +35,12 @@ function Navbar() {
 
   const [isLoggedIn, setIsLoggedIn] = useState();
 
-  useEffect(() => {
-    setIsLoggedIn(typeof window !== 'undefined' ? localStorage.getItem('loggedIn') : null);
-  }, []);
-
-  const nav = isLoggedIn ? <LoggedInNavbar/> : <LoggedOutNavbar/>
-
-  return (
-    nav
-  );
+  
+return isLoggedIn ? <LoggedInNavbar links={links} /> : <LoggedOutNavbar links={loggedOutLinks} />;
 }
 
+
 export default Navbar;
+
+ 
+
