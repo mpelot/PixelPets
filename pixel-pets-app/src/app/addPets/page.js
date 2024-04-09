@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import styles from "./getPets.css";
+import styles from "./addPets.css";
 import Navbar from "../navbar/navbar";
 
 export default function Home() {

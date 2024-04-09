@@ -55,10 +55,6 @@ body {
     
 }
 
-.title img {
-    
-}
-
 .title h1 {
     display: inline-block;
     margin: 0;
@@ -100,7 +96,7 @@ input {
     box-sizing: border-box;
 }
 
-button {
+.login-container form button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;

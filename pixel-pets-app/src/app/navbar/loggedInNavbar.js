@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from 'next/link'
 import styles from "./navbar.css";
-import LoggedInNavbar from './loggedInNavbar';
-import LoggedOutNavbar from './loggedOutNavbar';
 
 function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false);
@@ -21,20 +19,22 @@ function Navbar() {
     { href: "/login", text: "Log Out" }
   ];
 
-  const loggedOutLinks = [
-    { href: "/login", text: "Login" }
-  ];
-
-  const [isLoggedIn, setIsLoggedIn] = useState();
-
-  useEffect(() => {
-    setIsLoggedIn(typeof window !== 'undefined' ? localStorage.getItem('loggedIn') : null);
-  }, []);
-
-  const nav = isLoggedIn ? <LoggedInNavbar/> : <LoggedOutNavbar/>
-
   return (
-    nav
+    <nav id="navbar">
+      <div className="logo">
+        <img src="logo.png" alt="Logo" />
+      </div>
+        <ul id="nav-links" className={showNavLinks ? "show" : ""}>
+          {links.map((link, index) => (
+            <li key={index}>
+              <Link href={link.href} replace={true}>{link.text}</Link>
+            </li>
+          ))}
+        </ul>
+      <button id="nav-toggle" onClick={handleToggle}>
+        ☰
+      </button>
+    </nav>
   );
 }
 
