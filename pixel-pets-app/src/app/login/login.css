@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
 
-
-
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;  
-    width: 100vw;
-    
-    overflow: hidden;
-}
-
 .background {
     position: absolute;
     z-index: -1;
@@ -33,16 +22,17 @@ body {
   }
 
 .content {
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    
+    overflow: hidden;
 }
 
 .login {
     background-color: #b3c1e7;
-    padding: 120px;
+    padding: 0 120px;
     /* border-radius: 100px; */
     box-shadow: 0 0 20px 20px #b3c1e7;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
@@ -83,12 +73,12 @@ body {
     margin-bottom: 20px;
 }
 
-label {
+.form-group label {
     display: block;
     margin-bottom: 5px;
 }
 
-input {
+.form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -109,6 +99,6 @@ input {
     font-size: 1.2rem;
 }
 
-button:hover {
+.login-container form button:hover {
     background-color: #0056b3;
 }
