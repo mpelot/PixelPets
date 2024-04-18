@@ -10,13 +10,37 @@ export default function Home() {
   const router = useRouter()
 
   const [hasAccount, setHasAccount] = useState(true);
+  const [enteredUsername, setEnteredUsername] = useState('');
+  const [enteredLoginPass, setEnteredLoginPass] = useState('');
+  const [enteredSignUpPass, setEnteredSignUpPass] = useState('');
+
+  const usernameChangeHandler = (e) => {
+    setEnteredUsername(e.target.value);
+  }
+  const loginPassChangeHandler = (e) => {
+    setEnteredLoginPass(e.target.value);
+  }
+  const signUpPassChangeHandler = (e) => {
+    setEnteredSignUpPass(e.target.value);
+  }
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (typeof window !== 'undefined') {
       localStorage.setItem('loggedIn', true);
     }
-    router.push('/home')
+
+    const loginData = {
+      username: enteredUsername,
+      pass: enteredLoginPass
+    }
+
+    // verify login info
+
+    setEnteredUsername('');
+    setEnteredLoginPass('');
+
+    router.push('/home');
   };
 
   const handleSignUpSubmit = (e) => {
@@ -24,6 +48,17 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('loggedIn', true);
     }
+
+    const signUpData = {
+      username: enteredUsername,
+      pass: enteredSignUpPass
+    }
+
+    // create new user if there are no errors
+
+    setEnteredUsername('');
+    setEnteredSignUpPass('');
+
     router.push('/home')
   };
 
@@ -56,11 +91,11 @@ export default function Home() {
               <form onSubmit={handleLoginSubmit}>
                   <div className="form-group">
                       <label htmlFor="username">Username</label>
-                      <input type="text" id="username" name="username" required/>
+                      <input type="text" id="username" name="username" value={enteredUsername} onChange={usernameChangeHandler} required/>
                   </div>
                   <div className="form-group">
                       <label htmlFor="password">Password</label>
-                      <input type="password" id="password" name="password" required/>
+                      <input type="password" id="password" name="password" value={enteredLoginPass} onChange={loginPassChangeHandler} required/>
                   </div>
                   <button type="submit">Login</button>
               </form>
@@ -74,11 +109,11 @@ export default function Home() {
               <form onSubmit={handleSignUpSubmit}>
                   <div className="form-group">
                       <label htmlFor="username">Username</label>
-                      <input type="text" id="username" name="username" required/>
+                      <input type="text" id="username" name="username" value={enteredUsername} onChange={usernameChangeHandler} required/>
                   </div>
                   <div className="form-group">
                       <label htmlFor="password">Password</label>
-                      <input type="password" id="password" name="password" required/>
+                      <input type="password" id="password" name="password" value={enteredSignUpPass} onChange={signUpPassChangeHandler} required/>
                   </div>
                   <button type="submit">Create Account</button>
               </form>
