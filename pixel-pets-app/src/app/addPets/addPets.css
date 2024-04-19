@@ -1,3 +1,7 @@
+body {
+    background-color: #9bb1e9;
+}
+
 .formContainer form {
     background-color: #9bb1e9;
     font-family: "Jura", sans-serif;
@@ -14,8 +18,7 @@
 .formContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;   
 }
 .newPetTitle {
     color: #B8336A;
@@ -34,14 +37,10 @@
     flex-direction: column;
     background-color: #F5B9BF;
     justify-content: center;
-    /* align-items: flex-start; */
-    /* padding-left: 5%; */
-    /* padding: 40px; */
-    padding-left: 40%;
-        padding-right: 40%;
-        margin: 20%;
-        border: solid;
-    
+    padding-left: 150px;
+    padding-right: 150px;
+    margin: 30px;
+    border: solid;
 }
 
 .formContainer form > div {
