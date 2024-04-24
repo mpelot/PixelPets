@@ -16,7 +16,7 @@ const ItemSchema = new mongoose.Schema({
     trait: {
         type: String,
         required: true,
-    },
+    }
 });
 
 module.exports = pet = mongoose.model('pet', ItemSchema)
