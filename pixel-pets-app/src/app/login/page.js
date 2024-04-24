@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import styles from "./login.css";
 import bg from '../../../public/LogoBG.png'
+import axios from 'axios'
+import bcrypt from 'bcryptjs'
 
 export default function Home() {
 
@@ -26,40 +28,54 @@ export default function Home() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('loggedIn', true);
-    }
-
-    const loginData = {
-      username: enteredUsername,
-      pass: enteredLoginPass
-    }
-
+    
     // verify login info
-
-    setEnteredUsername('');
-    setEnteredLoginPass('');
-
-    router.push('/home');
+    axios.get(`http://localhost:8085/users/username/${enteredUsername}`)
+    .then((res) => {
+      bcrypt.compare(enteredLoginPass, res.data[0].password, function(err, result) {
+        if (result) {
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('loggedIn', true);
+          }
+          router.push('/home');
+        }
+        else {
+          console.log("Invalid password!");
+        }
+      });
+      setEnteredUsername('');
+      setEnteredLoginPass('');
+    })
+    .catch((err) => {
+      console.log("Could not get user from username")
+    })
   };
 
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('loggedIn', true);
-    }
 
-    const signUpData = {
-      username: enteredUsername,
-      pass: enteredSignUpPass
-    }
+    bcrypt.hash(enteredSignUpPass, 10, function(err, hash) {
+      const signUpData = {
+        username: enteredUsername,
+        password: hash
+      }
 
-    // create new user if there are no errors
+      // create new user if there are no errors
+      axios
+      .post('http://localhost:8085/users', signUpData)
+      .then((res) => {
+        setEnteredUsername('');
+        setEnteredSignUpPass('');
 
-    setEnteredUsername('');
-    setEnteredSignUpPass('');
-
-    router.push('/home')
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('loggedIn', true);
+        }
+        router.push('/home');
+      })
+      .catch((err) =>  {
+        console.log('Error creating user!');
+      })
+    });
   };
 
   const loginView = (e) => {
