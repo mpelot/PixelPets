@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
 
 .petContainer {
-    height: 200vh;
+    height: auto;
     overflow-y: auto;
     display: flex;
     justify-content: flex-start;
@@ -10,39 +10,7 @@
     flex-wrap: wrap;
     background-color: #b3c1e7;
     flex-direction: column;
-}
-
-.titleContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-color: #F5B9BF;
-    height: 55vh;
-    width: 100%;
-}
-
-.browse {
-    background-color: white;
-    font-family: "Bai Jamjuree", sans-serif;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    height: auto;
-    padding: 12px;
-    color: #B8336A;
-    box-shadow: 2px 4px 5px #B8336A;
-
-    font-size: 1.2rem;
-    margin-bottom: 5%;
-}
-
-.mainTitle {
-    color: #B8336A;
-    font-family: "Jura", sans-serif;
-    font-size: 6rem;
-
+    margin-bottom: 1rem;
 }
 
 .pixelPets {
@@ -85,3 +53,18 @@
        width: 80%;
        margin: auto;
    }
+   .editButton {
+    padding: 10px 20px;
+    background-color: white;
+    color: #B8336A;
+    font-family: "Bai Jamjuree", sans-serif;
+    font-size: 1rem;
+    border: none;
+    margin-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 4px 5px #B8336A;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
