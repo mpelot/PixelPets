@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
 
 .petContainer {
-    height: 200vh;
+    height: 150vh;
     overflow-y: auto;
     display: flex;
     justify-content: flex-start;
