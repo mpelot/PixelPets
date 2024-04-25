@@ -27,30 +27,33 @@ export default function Home() {
   ]);
 
   return (
-    <div className="petContainer">
-      <Navbar />
-      <div className="titleContainer">
-        <div className="pixelPets">
-          <img src="logo.png" />
-          <h1 className="mainTitle">Pixel Pets</h1>
-        </div>
-        <button className="browse">Browse Pets</button>
-      </div>
-
-      <h2 className="subtitle">My Pets</h2>
-
-      <div className="subContainer">
-        <div className="myCards">
-          {pets.map((pet) => (
-            <PetCard
-              key={pet.id}
-              name={pet.name}
-              img={pet.img}
-              desc={pet.desc}
-            ></PetCard>
-          ))}
-        </div>
-      </div>
+<div className="petContainer">
+  <Navbar />
+  <div className="titleContainer">
+    <div className="pixelPets">
+      <img src="logo.png" />
+      <h1 className="mainTitle">Pixel Pets</h1>
     </div>
+    <a href="../getPets/getPets">
+      <button className="browse">Browse Pets</button>
+    </a>
+  </div>
+
+  <h2 className="subtitle">My Pets</h2>
+
+  <div className="subContainer">
+    <div className="myCards">
+      {pets.map((pet) => (
+        <PetCard
+          key={pet.id}
+          name={pet.name}
+          img={pet.img}
+          desc={pet.desc}
+        ></PetCard>
+      ))}
+    </div>
+  </div>
+</div>
+
   );
 }
