@@ -16,11 +16,7 @@ const ItemSchema = new mongoose.Schema({
     trait: {
         type: String,
         required: true,
-    },
-    updated_date: {
-        type: Date,
-        default: Date.now,
-    },
+    }
 });
 
 module.exports = pet = mongoose.model('pet', ItemSchema)
