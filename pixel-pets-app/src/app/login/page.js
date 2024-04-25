@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import {UserContext} from '../context/UserContext';
 import styles from "./login.css";
 import bg from '../../../public/LogoBG.png'
 import axios from 'axios'
@@ -9,7 +10,17 @@ import bcrypt from 'bcryptjs'
 
 export default function Home() {
 
-  const router = useRouter()
+  const router = useRouter();
+  const { userData, setUserData } = useContext(UserContext);
+
+  useEffect(() => {
+    if (userData.token) {
+      router.push("/home");
+    }
+    // if (typeof window !== 'undefined') {
+    //   localStorage.setItem('loggedIn', false);
+    // }
+  }, [userData.token, router]);
 
   const [hasAccount, setHasAccount] = useState(true);
   const [enteredUsername, setEnteredUsername] = useState('');
@@ -26,56 +37,97 @@ export default function Home() {
     setEnteredSignUpPass(e.target.value);
   }
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    
-    // verify login info
-    axios.get(`http://localhost:8085/users/username/${enteredUsername}`)
-    .then((res) => {
-      bcrypt.compare(enteredLoginPass, res.data[0].password, function(err, result) {
-        if (result) {
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('loggedIn', true);
-          }
-          router.push('/home');
-        }
-        else {
-          console.log("Invalid password!");
-        }
-      });
-      setEnteredUsername('');
-      setEnteredLoginPass('');
-    })
-    .catch((err) => {
-      console.log("Could not get user from username")
-    })
-  };
-
-  const handleSignUpSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    bcrypt.hash(enteredSignUpPass, 10, function(err, hash) {
-      const signUpData = {
+    try {
+      const loginData = {
         username: enteredUsername,
-        password: hash
+        password: enteredLoginPass
       }
 
-      // create new user if there are no errors
-      axios
-      .post('http://localhost:8085/users', signUpData)
-      .then((res) => {
-        setEnteredUsername('');
-        setEnteredSignUpPass('');
+      const response = await axios.post('http://localhost:8085/users/login', loginData);
+      setUserData({
+        token: response.data.token,
+        user: response.data.user
+      });
 
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('loggedIn', true);
-        }
-        router.push('/home');
-      })
-      .catch((err) =>  {
-        console.log('Error creating user!');
-      })
-    });
+      localStorage.setItem("auth-token", response.data.token);
+      router.push('/home');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+    
+    // verify login info
+    // axios.get(`http://localhost:8085/users/username/${enteredUsername}`)
+    // .then((res) => {
+    //   bcrypt.compare(enteredLoginPass, res.data[0].password, function(err, result) {
+    //     if (result) {
+    //       if (typeof window !== 'undefined') {
+    //         localStorage.setItem('loggedIn', true);
+    //       }
+    //       router.push('/home');
+    //     }
+    //     else {
+    //       console.log("Invalid password!");
+    //     }
+    //   });
+    //   setEnteredUsername('');
+    //   setEnteredLoginPass('');
+    // })
+    // .catch((err) => {
+    //   console.log("Could not get user from username")
+    // })
+  };
+
+  const handleSignUpSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const signUpData = {
+        username: enteredUsername,
+        password: enteredSignUpPass
+      }
+
+      await axios.post('http://localhost:8085/users/signup', signUpData);
+      const loginRes = await axios.post('http://localhost:8085/users/login', {
+        username: signUpData.username,
+        password: signUpData.password
+      });
+
+      setUserData({
+        token: response.data.token,
+        user: response.data.user
+      });
+
+      localStorage.setItem("auth-token", loginRes.data.token);
+      router.push('/home');
+    } catch (error) {
+      console.error('SignUp failed:', error);
+    }
+
+    // bcrypt.hash(enteredSignUpPass, 10, function(err, hash) {
+    //   const signUpData = {
+    //     username: enteredUsername,
+    //     password: hash
+    //   }
+
+    //   // create new user if there are no errors
+    //   axios
+    //   .post('http://localhost:8085/users', signUpData)
+    //   .then((res) => {
+    //     setEnteredUsername('');
+    //     setEnteredSignUpPass('');
+
+    //     if (typeof window !== 'undefined') {
+    //       localStorage.setItem('loggedIn', true);
+    //     }
+    //     router.push('/home');
+    //   })
+    //   .catch((err) =>  {
+    //     console.log('Error creating user!');
+    //   })
+    // });
   };
 
   const loginView = (e) => {
@@ -85,12 +137,6 @@ export default function Home() {
   const signUpView = (e) => {
     setHasAccount(false)
   }
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('loggedIn', false);
-    }
-  }, [])
 
   return (
       <div className="content">
