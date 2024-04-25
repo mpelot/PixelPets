@@ -34,9 +34,9 @@ export default function Home() {
       <img src="logo.png" />
       <h1 className="mainTitle">Pixel Pets</h1>
     </div>
-    <a href="../getPets/getPets">
-      <button className="browse">Browse Pets</button>
-    </a>
+    
+      <button className="browse"><a href="./getPets">Browse Pets</a></button>
+
   </div>
 
   <h2 className="subtitle">My Pets</h2>
