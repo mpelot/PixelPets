@@ -1,23 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
-
+body {
+    height: auto;
+    background-color: #F5B9BF;
+}
 .getPetsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #F5B9BF;
-    height: 100vh;
+
+    height: auto;
     font-family: "Jura", sans-serif;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    /* margin: 0; */
+    /* padding: 0; */
 }
 
 .petContainer {
     width: 100%;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     height: auto;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -56,7 +59,7 @@
     border-radius: 10px;
     background-color: #9bb1e9;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-top: 2rem;
+    margin: 2rem;
 }
 
 .titleContainer {
