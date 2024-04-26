@@ -9,7 +9,7 @@ body {
     padding: 0;
     height: 100vh;
 }
-.getPetsContainer {
+.addPetsContainer {
     display: flex;
     justify-content: center;
     align-items: center;

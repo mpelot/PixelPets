@@ -26,11 +26,25 @@
   #nav-links li {
     padding: 0 20px;
   }
+
+  #nav-links li button {
+    color: white;
+    text-decoration: none;
+    border: none;
+    background-color: #21295C;
+    transition: color 0.3s;
+    font-size: 1rem;
+  }
   
   #nav-links a {
     color: white;
     text-decoration: none;
     transition: color 0.3s;
+  }
+
+  #nav-links button:hover {
+    color: #a2a5b5;
+    cursor: pointer;
   }
   
   #nav-links a:hover {

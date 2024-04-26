@@ -26,7 +26,9 @@ function Navbar() {
     { href: "/home", text: "Home" },
     // { href: "/about", text: "About" },
     //{ href: "/home", text: "My Pets" },
-    { href: "/addPets", text: "Add Pets" }
+    { href: "/addPets", text: "Add Pets" },
+    {href: "/myPets", text: "My Pets" },
+    {href: "/getPets", text: "Get Pets"}
   ];
 
   const loggedOutLinks = [

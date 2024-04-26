@@ -27,10 +27,10 @@ export default function Home() {
   ]);
 
   return (
-<div className="petContainer">
+<div className="homePetContainer">
   <Navbar />
-  <div className="titleContainer">
-    <div className="pixelPets">
+  <div className="homeTitleContainer">
+    <div className="homePixelPets">
       <img src="logo.png" />
       <h1 className="mainTitle">Pixel Pets</h1>
     </div>
@@ -39,10 +39,10 @@ export default function Home() {
 
   </div>
 
-  <h2 className="subtitle">My Pets</h2>
+  <h2 className="homeSubtitle">My Pets</h2>
 
-  <div className="subContainer">
-    <div className="myCards">
+  <div className="homeSubContainer">
+    <div className="homeMyCards">
       {pets.map((pet) => (
         <PetCard
           key={pet.id}

@@ -96,8 +96,8 @@ export default function Home() {
       });
 
       setUserData({
-        token: response.data.token,
-        user: response.data.user
+        token: loginRes.data.token,
+        user: loginRes.data.user
       });
 
       localStorage.setItem("auth-token", loginRes.data.token);

@@ -41,7 +41,7 @@ export default function getPets() {
     return (
       <div className="getPetsContainer">
         <Navbar />
-        <div className="formContainer">
+        <div className="getFormContainer">
           <h1>Daily Pets</h1>
           <div className="timerDisplay">Next refresh in: {countdown}</div>
           <div className="petsDisplay">

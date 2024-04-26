@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="getPetsContainer">
+    <div className="addPetsContainer">
       {/* <header>
         <h1>Pixel Pets</h1>
       </header> */}
