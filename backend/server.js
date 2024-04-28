@@ -19,3 +19,6 @@ mongoose.connect(conn_str).then(() => {
 
 const users = require('./routes/users');
 app.use('/users', users);
+
+const pets = require('./routes/pets');
+app.use('/pets', pets)

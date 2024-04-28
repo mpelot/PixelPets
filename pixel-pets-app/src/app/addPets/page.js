@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import axios from'axios';
 import styles from "./addPets.css";
 import Navbar from "../navbar/navbar";
 
@@ -8,7 +9,8 @@ export default function Home() {
     name: '',
     description: '',
     rarity: '1',
-    personalityTrait: ''
+    image: '',
+    personalityTrait: '',
   });
 
   const handleInputChange = (e) => {
@@ -16,22 +18,27 @@ export default function Home() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    setFormData({
-      name: '',
-      description: '',
-      rarity: '1',
-      personalityTrait: ''
-    });
+
+    try {
+      await axios.post('http://localhost:8085/pets', formData);
+      console.log('Pet added successfully');
+      setFormData({
+        name: '',
+        description: '',
+        rarity: '1',
+        image: '',
+        personalityTrait: ''
+      });
+    } catch (error) {
+      console.error('Error adding pet:', error);
+    }
   };
 
   return (
     <div className="addPetsContainer">
-      {/* <header>
-        <h1>Pixel Pets</h1>
-      </header> */}
       <Navbar />
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
@@ -41,7 +48,15 @@ export default function Home() {
               src="https://static.thenounproject.com/png/187803-200.png"
               alt="Logo"
             />
-            <input type="file" />
+          </div>
+          <div>
+            <label>Image:</label>
+            <input 
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleInputChange}
+              />
           </div>
           <div>
             <label>Name:</label>

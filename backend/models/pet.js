@@ -5,6 +5,10 @@ const ItemSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
     rarity: {
         type: String,
         required: true,
@@ -13,7 +17,7 @@ const ItemSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    trait: {
+    personalityTrait: {
         type: String,
         required: true,
     }
