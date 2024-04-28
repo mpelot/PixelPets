@@ -33,6 +33,8 @@ export default function Home() {
                 name={pet.name}
                 img={pet.image}
                 desc={pet.description}
+                trait={pet.personalityTrait}
+                rarity={pet.rarity}
               />
               <button className="editButton">Edit</button>
             </div>

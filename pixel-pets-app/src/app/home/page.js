@@ -11,18 +11,21 @@ export default function Home() {
       name: "Turtle",
       img: "Turtle.png",
       desc: "This is a turtle rahhhhhhh",
+      rarity: "4"
     },
     {
       id: "1",
       name: "Turtle",
       img: "Turtle.png",
       desc: "This is a turtle rahhhhhhh",
+      rarity: "2"
     },
     {
       id: "2",
       name: "Turtle",
       img: "Turtle.png",
       desc: "This is a turtle rahhhhhhh",
+      rarity: "5"
     },
   ]);
 
@@ -49,6 +52,8 @@ export default function Home() {
           name={pet.name}
           img={pet.img}
           desc={pet.desc}
+          trait={pet.personalityTrait}
+          rarity={pet.rarity}
         ></PetCard>
       ))}
     </div>

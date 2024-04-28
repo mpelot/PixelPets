@@ -3,7 +3,8 @@
   height: 100%;
   border-radius: 20px;
   /* border: 1px solid rgba(200 200 200 / 0.2); */
-  background-color: #242424;
+  outline-offset: -8px;
+  border: black 5px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,11 +13,28 @@
   text-shadow: 0 1px 0 #999;
 }
 
+.cardContainer p {
+    width: 80%;
+    height: 64px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.cardTitle {
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+}
+
+.cardTitle h2 {
+    margin: 0 25px;
+}
+
 .imageContainer {
     width: 200px;
     height: 180px;
     overflow: hidden;
-    margin-top: 20px;
+    border-radius: 10px;
 }
 
 .imageContainer img {
@@ -32,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: 14px;
     background-color: rgba(0, 0, 0, 0);
     border-radius: 20px;
 }
