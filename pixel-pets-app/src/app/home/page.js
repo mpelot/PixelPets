@@ -43,9 +43,9 @@ export default function Home() {
 
   <div className="homeSubContainer">
     <div className="homeMyCards">
-      {pets.map((pet) => (
+      {pets.map((pet, index) => (
         <PetCard
-          key={pet.id}
+          key={index}
           name={pet.name}
           img={pet.img}
           desc={pet.desc}

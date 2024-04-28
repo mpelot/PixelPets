@@ -27,7 +27,7 @@ function Navbar() {
     // { href: "/about", text: "About" },
     //{ href: "/home", text: "My Pets" },
     { href: "/addPets", text: "Add Pets" },
-    {href: "/myPets", text: "My Pets" },
+    {href: "/managePets", text: "Manage Pets" },
     {href: "/getPets", text: "Get Pets"}
   ];
 
