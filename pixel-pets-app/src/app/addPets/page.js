@@ -6,6 +6,7 @@ import Navbar from "../navbar/navbar";
 
 export default function Home() {
   const [formData, setFormData] = useState({
+    userID: 'MODEL',
     name: '',
     description: '',
     rarity: '1',

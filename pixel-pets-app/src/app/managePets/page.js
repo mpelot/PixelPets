@@ -10,7 +10,7 @@ export default function Home() {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8085/pets")
+    axios.get(`http://localhost:8085/pets/ofUser/MODEL`)
     .then((res) => {
       setPets(res.data);
     })

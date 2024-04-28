@@ -9,6 +9,11 @@ router.get('/',(req, res) => {
         .then((items) => res.json(items))
         .catch((err) => res.status(404).json({ noitemsfound: 'No Items found' }));
 });
+router.get('/ofUser/:id',(req, res) => {
+    Item.find( {userID: req.params.id} )
+        .then((items) => res.json(items))
+        .catch((err) => res.status(404).json({ noitemsfound: 'No Items found' }));
+});
 router.get('/:id', (req, res) => {
     Item.findById(req.params.id)
         .then((item) => res.json(item))
