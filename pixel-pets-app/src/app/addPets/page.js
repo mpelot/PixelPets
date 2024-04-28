@@ -100,6 +100,11 @@ export default function Home() {
               <option value="friendly">Friendly</option>
               <option value="outgoing">Outgoing</option>
               <option value="introverted">Introverted</option>
+              <option value="loyal">Loyal</option>
+              <option value="clever">Clever</option>
+              <option value="courageous">Courageous</option>
+              <option value="lazy">Lazy</option>
+              <option value="independent">Independent</option>
             </select>
           </div>
           <button type="submit">Submit</button>
