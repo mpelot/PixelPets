@@ -2,14 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
 
 .homePetContainer {
-    height: 150vh;
+    /* height: 150vh; */
     overflow-y: auto;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    background-color: #b3c1e7;
+    background-color: #9bb1e9;
     flex-direction: column;
+    padding-bottom: 5%;
 }
 .homeTitleContainer {
     display: flex;
@@ -25,6 +26,7 @@
     font-family: "Bai Jamjuree", sans-serif;
     border: none;
         border-radius: 5px;
+
         cursor: pointer;
         transition: background-color 0.3s ease;
         height: auto;
@@ -34,6 +36,10 @@
     
     font-size: 1.2rem;
     margin-bottom: 5%;
+}
+
+.browse a  {
+    text-decoration: none;
 }
 .mainTitle {
     color: #B8336A;
@@ -71,5 +77,8 @@
 }
 .homeMyCards {
     display: flex;
-    flex-direction: row;
-}
+    width: 100%;
+    align-items: center;
+
+    
+    }
