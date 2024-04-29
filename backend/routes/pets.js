@@ -24,7 +24,7 @@ router.post('/', bodyParser.json(), (req, res) => {
         .then((item) => res.json({ msg: 'Item added successfully'}))
         .catch((err) => res.status(400).json({ error: 'Error'}));
 });
-router.put('/:id', (req, res) => { 
+router.put('/:id', bodyParser.json(), (req, res) => { 
     Item.findByIdAndUpdate(req.params.id, req.body)
     .then((item) => res.json({ msg: 'Updated successfully'}))
     .catch((err) => res.status(400).json({ error: 'Unable to update the Database' })

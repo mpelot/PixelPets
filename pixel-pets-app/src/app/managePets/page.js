@@ -35,12 +35,20 @@ export default function Home() {
     setEditPopupVisible(true);
   };
 
-  const handleSubmitEdit = async () => {
+  const handleSubmitEdit = async (e) => {
+    e.preventDefault();
+
     try {
-      await axios.post(
-        `http://localhost:8085/pets/${editFormData.id}`,
-        editFormData
-      );
+      const editData = {
+        userID: 'MODEL',
+        name: editFormData.name,
+        description: editFormData.description,
+        rarity: editFormData.rarity,
+        image: editFormData.image,
+        personalityTrait: editFormData.personalityTrait
+      }
+      
+      await axios.put(`http://localhost:8085/pets/${editFormData.id}`, editData)
       console.log("Pet edited successfully");
       setEditPopupVisible(false);
       setEditFormData({
@@ -50,6 +58,9 @@ export default function Home() {
         rarity: "1",
         image: "",
         personalityTrait: "",
+      });
+      axios.get(`http://localhost:8085/pets/ofUser/MODEL`).then((res) => {
+        setPets(res.data);
       });
     } catch (error) {
       console.error("Error editing pet:", error);
