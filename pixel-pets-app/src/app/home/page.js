@@ -1,33 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./home.css";
 import PetCard from "../petCard/petCard";
 import Navbar from "../navbar/navbar";
+import axios from "axios";
 
 export default function Home() {
-  const [pets, setPets] = useState([
-    {
-      id: "0",
-      name: "Turtle",
-      img: "Turtle.png",
-      desc: "This is a turtle rahhhhhhh",
-      rarity: "4"
-    },
-    {
-      id: "1",
-      name: "Turtle",
-      img: "Turtle.png",
-      desc: "This is a turtle rahhhhhhh",
-      rarity: "2"
-    },
-    {
-      id: "2",
-      name: "Turtle",
-      img: "Turtle.png",
-      desc: "This is a turtle rahhhhhhh",
-      rarity: "5"
-    },
-  ]);
+
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8085/pets/ofUser/MODEL`)
+    .then((res) => {
+      setPets(res.data);
+    })
+  }, []) 
 
   return (
 <div className="homePetContainer">
@@ -50,7 +37,7 @@ export default function Home() {
         <PetCard
           key={index}
           name={pet.name}
-          img={pet.img}
+          img={pet.image}
           desc={pet.desc}
           trait={pet.personalityTrait}
           rarity={pet.rarity}
