@@ -38,7 +38,7 @@ export default function Home() {
           key={index}
           name={pet.name}
           img={pet.image}
-          desc={pet.desc}
+          desc={pet.description}
           trait={pet.personalityTrait}
           rarity={pet.rarity}
         ></PetCard>
