@@ -1,70 +1,161 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Jura:wght@300..700&display=swap");
+body {
+  background-color: #9bb1e9;
+}
 .petContainer {
-    height: auto;
-    overflow-y: auto;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: #b3c1e7;
-    flex-direction: column;
-    margin-bottom: 1rem;
+  height: auto;
+  overflow-y: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #9bb1e9;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .pixelPets {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .pixelPets img {
-    height: 7rem;
-    width: auto;
-    margin: 1rem;
-
+  height: 7rem;
+  width: auto;
+  margin: 1rem;
 }
 
 .subtitle {
-    font-family: "Jura", sans-serif;
-    font-size: 1.5rem;
-    color: #B8336A;
-    align-items: flex-start;
+  font-family: "Jura", sans-serif;
+  font-size: 1.5rem;
+  color: #b8336a;
+  align-items: flex-start;
 }
 
 .subContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .subheader {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .myCards {
-    display: grid;
-       grid-template-columns: repeat(4, 1fr);
-       gap: 20px;
-       width: 80%;
-       margin: auto;
-   }
-   .editButton {
-    padding: 10px 20px;
-    background-color: white;
-    color: #B8336A;
-    font-family: "Bai Jamjuree", sans-serif;
-    font-size: 1rem;
-    border: none;
-    margin-left: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 2px 4px 5px #B8336A;
-    transition: background-color 0.3s ease, transform 0.2s;
-    margin-top: auto;
-    margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 80%;
+  margin: auto;
 }
+.editButton {
+  padding: 10px 20px;
+  background-color: white;
+  color: #b8336a;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 1rem;
+  border: none;
+  margin-left: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 4px 5px #b8336a;
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+.editPopupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  
+}
+
+.editPopup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  background-color: #f5b9bf;
+  color: #b8336a;
+  font-family: "Jura", sans-serif;
+  font-size: 2rem;
+  width: 35%;
+  justify-content: center;
+  
+}
+.editPopup h3 {
+    display: flex;
+    justify-content: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10%;
+  font-family: "Jura", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #b8336a;
+}
+.form button {
+  padding: 10px 20px;
+  background-color: white;
+  color: #b8336a;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 4px 5px #b8336a;
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  
+}
+.exitButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.form input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    
+}
+.form input[type="text"],
+textarea,
+select {
+    /* width: 100%; */
+    height: 10%;
+    font-weight: normal;
+        /* font-style: oblique; */
+        color: #b8336a;
+        font-weight: 400;
+        margin-bottom: 10px;
+        border: none;
+        font-family: "Bai Jamjuree", sans-serif;
+        padding: 5px;
+        /* border-radius: 5%; */
+        border: solid #b8336a;
+        background-color: #f6d1d5;
+    }
