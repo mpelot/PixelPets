@@ -12,11 +12,13 @@ export default function Home() {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
+    if (userData.user != null) {
     axios.get(`http://localhost:8085/pets/ofUser/${userData.user.id}`)
     .then((res) => {
       setPets(res.data);
     })
-  }, [userData.user.id]) 
+  }
+  }, []) 
 
   return (
 <div className="homePetContainer">

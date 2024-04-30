@@ -1,5 +1,6 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from "react";
+import {UserContext} from '../context/UserContext';
 import axios from 'axios';
 import Navbar from '../navbar/navbar';
 import PetCard from '../petCard/petCard';
@@ -9,10 +10,11 @@ export default function GetPets() {
     const [pets, setPets] = useState([]);
     const [displayPets, setDisplayPets] = useState([]);
     const [countdown, setCountdown] = useState("");
+    const { userData, setUserData } = useContext(UserContext);
 
     // Function to fetch pets from the backend
     const fetchPets = () => {
-        axios.get('http://localhost:8085/pets')  // Adjust the URL as needed
+        axios.get(`http://localhost:8085/pets/ofUser/MODEL`)  // Adjust the URL as needed
             .then((response) => {
                 setPets(response.data);  // Assume the server response contains the array of pets
                 randomizePets(response.data); // Randomize and display initial 3 pets
@@ -48,6 +50,24 @@ export default function GetPets() {
         return () => clearInterval(timer);  // Clean up on unmount
     }, []);
 
+    const handleAdopt = async (pet) => {
+      try {
+        const petData = {
+          userID: userData.user.id,
+          name: pet.name,
+          description: pet.description,
+          rarity: pet.rarity,
+          image: pet.image,
+          personalityTrait: pet.personalityTrait
+        }
+
+        await axios.post('http://localhost:8085/pets', petData);
+        console.log('Pet added successfully');
+      } catch (error) {
+        console.error('Error adding pet:', error);
+      }
+    }
+
     return (
       <div className="getPetsContainer">
         <Navbar />
@@ -64,7 +84,7 @@ export default function GetPets() {
                   trait={pet.personalityTrait}
                   rarity={pet.rarity}
                 />
-                <button className="adoptButton">Adopt</button>
+                <button className="adoptButton" onClick={() => handleAdopt(pet)}>Adopt</button>
               </div>
             ))}
           </div>
