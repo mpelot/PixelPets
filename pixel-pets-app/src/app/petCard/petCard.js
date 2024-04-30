@@ -130,16 +130,6 @@ export default function PetCard(props) {
                     </div>
                 </div>
             </div>
-            return (    
-        <div className='container'>
-            {/* ... existing code */}
-            
-            {
-                !props.isAdopted &&
-                <button className="adoptButton" onClick={props.onAdopt}>Adopt</button>
-            }
-        </div>
-    );
         </div>
     );
 }
