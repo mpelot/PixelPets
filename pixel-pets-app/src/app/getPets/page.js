@@ -49,28 +49,29 @@ export default function GetPets() {
     }, []);
 
     return (
-        <div className="getPetsContainer">
-            <Navbar />
-            <div className="getFormContainer">
-                <h1>Daily Pets</h1>
-                <div className="timerDisplay">Next refresh in: {countdown}</div>
-                <div className="petsDisplay">
-                    {displayPets.map((pet) => (
-                        <div key={pet.id} className="petCardContainer">
-                            <PetCard
-                                name={pet.name}
-                                img={pet.image}
-                                desc={`${pet.description}, Rarity: ${pet.rarity}`}
-                                trait={pet.personalityTrait}
-                            />
-                            <button className="adoptButton">Adopt</button>
-                        </div>
-                    ))}
-                </div>
-                <button onClick={() => randomizePets(pets)} className="refreshButton">
-                    Refresh Pets
-                </button>
-            </div>
+      <div className="getPetsContainer">
+        <Navbar />
+        <div className="getFormContainer">
+          <h1>Daily Pets</h1>
+          <div className="timerDisplay">Next refresh in: {countdown}</div>
+          <div className="petsDisplay">
+            {displayPets.map((pet) => (
+              <div className="petCardContainer" key={pet._id}>
+                <PetCard
+                  name={pet.name}
+                  img={pet.image}
+                  desc={pet.description}
+                  trait={pet.personalityTrait}
+                  rarity={pet.rarity}
+                />
+                <button className="adoptButton">Adopt</button>
+              </div>
+            ))}
+          </div>
+          <button onClick={() => randomizePets(pets)} className="refreshButton">
+            Refresh Pets
+          </button>
         </div>
+      </div>
     );
 }
