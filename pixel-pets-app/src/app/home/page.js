@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import {UserContext} from '../context/UserContext';
 import styles from "./home.css";
 import PetCard from "../petCard/petCard";
 import Navbar from "../navbar/navbar";
@@ -7,14 +8,15 @@ import axios from "axios";
 
 export default function Home() {
 
+  const { userData, setUserData } = useContext(UserContext);
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8085/pets/ofUser/MODEL`)
+    axios.get(`http://localhost:8085/pets/ofUser/${userData.user.id}`)
     .then((res) => {
       setPets(res.data);
     })
-  }, []) 
+  }, [userData.user.id]) 
 
   return (
 <div className="homePetContainer">

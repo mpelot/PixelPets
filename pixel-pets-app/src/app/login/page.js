@@ -17,9 +17,6 @@ export default function Home() {
     if (userData.token) {
       router.push("/home");
     }
-    // if (typeof window !== 'undefined') {
-    //   localStorage.setItem('loggedIn', false);
-    // }
   }, [userData.token, router]);
 
   const [hasAccount, setHasAccount] = useState(true);
