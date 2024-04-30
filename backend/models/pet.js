@@ -24,6 +24,15 @@ const ItemSchema = new mongoose.Schema({
     personalityTrait: {
         type: String,
         required: true,
+    },
+    adoptedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        default: null
+    },
+    isAdopted: {
+        type: Boolean,
+        default: false
     }
 });
 

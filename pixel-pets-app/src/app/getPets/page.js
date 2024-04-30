@@ -1,23 +1,34 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from '../navbar/navbar';
 import PetCard from '../petCard/petCard';
 import styles from './getPets.css';
 
-export default function getPets() {
-    const [pets, setPets] = useState([
-        { id: 1, name: 'pet 1', img: 'Turtle.png', desc: 'A friendly dog', rarity: '1', personalityTrait: 'friendly' },
-        { id: 2, name: 'pet 2', img: 'Turtle.png', desc: 'A sneaky cat', rarity: '2', personalityTrait: 'outgoing' },
-        { id: 3, name: 'pet 3', img: 'Turtle.png', desc: 'A chirpy bird', rarity: '3', personalityTrait: 'introverted' }
-    ]);
+export default function GetPets() {
+    const [pets, setPets] = useState([]);
+    const [displayPets, setDisplayPets] = useState([]);
     const [countdown, setCountdown] = useState("");
 
-    const shufflePets = () => {
-        let shuffled = [...pets].sort(() => 0.5 - Math.random());
-        setPets(shuffled);
-        resetTimer();
+    // Function to fetch pets from the backend
+    const fetchPets = () => {
+        axios.get('http://localhost:8085/pets')  // Adjust the URL as needed
+            .then((response) => {
+                setPets(response.data);  // Assume the server response contains the array of pets
+                randomizePets(response.data); // Randomize and display initial 3 pets
+            })
+            .catch((error) => {
+                console.error('Failed to fetch pets:', error);
+            });
     };
 
+    // Shuffle and display 3 pets
+    const randomizePets = (petsData) => {
+        let shuffled = [...petsData].sort(() => 0.5 - Math.random());
+        setDisplayPets(shuffled.slice(0, 3)); // Take only the first 3 pets
+    };
+
+    // Timer to reset daily
     const resetTimer = () => {
         const now = new Date();
         const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
@@ -26,7 +37,7 @@ export default function getPets() {
     };
 
     useEffect(() => {
-        shufflePets(); // Initial shuffle on load
+        fetchPets();  // Fetch and set pets on load
         const timer = setInterval(() => {
             const timeLeft = resetTimer();
             const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
@@ -34,32 +45,32 @@ export default function getPets() {
             const seconds = Math.floor((timeLeft / 1000) % 60);
             setCountdown(`${hours}h ${minutes}m ${seconds}s`);
         }, 1000);
-
-        return () => clearInterval(timer); // Clear interval on component unmount
+        return () => clearInterval(timer);  // Clean up on unmount
     }, []);
 
     return (
-      <div className="getPetsContainer">
-        <Navbar />
-        <div className="getFormContainer">
-          <h1>Daily Pets</h1>
-          <div className="timerDisplay">Next refresh in: {countdown}</div>
-          <div className="petsDisplay">
-            {pets.map((pet) => (
-              <div key={pet.id} className="petCardContainer">
-                <PetCard
-                  name={pet.name}
-                  img={pet.img}
-                  desc={`${pet.desc}, Rarity: ${pet.rarity}`}
-                />
-                <button className="adoptButton">Adopt</button>
-              </div>
-            ))}
-          </div>
-          <button onClick={shufflePets} className="refreshButton">
-            Refresh Pets
-          </button>
+        <div className="getPetsContainer">
+            <Navbar />
+            <div className="getFormContainer">
+                <h1>Daily Pets</h1>
+                <div className="timerDisplay">Next refresh in: {countdown}</div>
+                <div className="petsDisplay">
+                    {displayPets.map((pet) => (
+                        <div key={pet.id} className="petCardContainer">
+                            <PetCard
+                                name={pet.name}
+                                img={pet.image}
+                                desc={`${pet.description}, Rarity: ${pet.rarity}`}
+                                trait={pet.personalityTrait}
+                            />
+                            <button className="adoptButton">Adopt</button>
+                        </div>
+                    ))}
+                </div>
+                <button onClick={() => randomizePets(pets)} className="refreshButton">
+                    Refresh Pets
+                </button>
+            </div>
         </div>
-      </div>
     );
 }
